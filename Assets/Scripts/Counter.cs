@@ -6,18 +6,24 @@ using UnityEngine.UI;
 
 public class Counter : MonoBehaviour
 {
-    public Text CounterText;
-
-    private int Count = 0;
+    private ScoreManager scoreManager;
+    [SerializeField] TextMesh scoreLabel;
+    [SerializeField] float scoreValue = 100;
 
     private void Start()
     {
-        Count = 0;
+        scoreManager = GameObject.Find("Score Manager").GetComponent<ScoreManager>();
+        scoreLabel.text = scoreValue.ToString();
     }
+
 
     private void OnTriggerEnter(Collider other)
     {
-        Count += 1;
-        CounterText.text = "Count : " + Count;
+        scoreManager.addScore(scoreValue);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        scoreManager.addScore(-scoreValue);
     }
 }
