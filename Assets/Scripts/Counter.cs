@@ -20,10 +20,15 @@ public class Counter : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         scoreManager.addScore(scoreValue);
+        other.GetComponent<MarbleFunctions>().rolling = false;
+        other.GetComponent<MarbleFunctions>().inHole = true;
+
     }
 
     private void OnTriggerExit(Collider other)
     {
         scoreManager.addScore(-scoreValue);
+        other.GetComponent<MarbleFunctions>().rolling = true;
+        other.GetComponent<MarbleFunctions>().inHole = false;
     }
 }
