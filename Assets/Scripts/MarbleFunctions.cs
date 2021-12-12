@@ -24,6 +24,7 @@ public class MarbleFunctions : MonoBehaviour
         WaitingBehavior();
     }
 
+    // Marble's behavior when is waiting
     private void WaitingBehavior()
     {
         if (waiting)
@@ -34,6 +35,7 @@ public class MarbleFunctions : MonoBehaviour
 
     }
 
+    // Reposition the gameObject when is out of bounds
     private void OutOfBounds()
     {
         if (transform.position.y < -limitBoundY)
@@ -44,11 +46,13 @@ public class MarbleFunctions : MonoBehaviour
         }
     }
 
+    // Moves the gameObject to Vector3.zero
     public void SetPosition()
     {
         transform.position = Vector3.zero;
     }
 
+    // Moves the gameObject to a provided specific vector3
     public void SetPosition(Vector3 newPosition)
     {
         transform.position = newPosition;

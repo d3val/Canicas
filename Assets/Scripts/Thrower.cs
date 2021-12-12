@@ -20,6 +20,7 @@ public class Thrower : MonoBehaviour
     public bool movePhase = true;
     public bool anglePhase = false;
     public bool forcePhase = false;
+    public GameObject forceBar;
 
     public Vector3 initialMarbleOrganizePosition;
     private float OrganizeOffsetY = 2;
@@ -47,7 +48,7 @@ public class Thrower : MonoBehaviour
         if (gameOver)
         {
             Debug.Log("Game Over");
-            // Insert GameOver code
+            gameManager.GameOver();
         }
 
         ReadInput();
@@ -68,6 +69,7 @@ public class Thrower : MonoBehaviour
         OrganizeWaitingMarbles();
     }
 
+    // Sets the position for marbles that are not using.
     private void OrganizeWaitingMarbles()
     {
         Vector3 vectorOffset = Vector3.zero;
@@ -81,6 +83,7 @@ public class Thrower : MonoBehaviour
         }
     }
 
+    // Reads input from keyboard and controls thrower phases depending on the input.
     private void ReadInput()
     {
         verticalInput = Input.GetAxis("Vertical");
@@ -95,6 +98,7 @@ public class Thrower : MonoBehaviour
         {
             anglePhase = false;
             forcePhase = true;
+            forceBar.SetActive(true);
         }
 
         if (forcePhase && Input.GetKeyDown(KeyCode.Space))
@@ -121,21 +125,29 @@ public class Thrower : MonoBehaviour
     // Add an impulse force to the gameObject with a direction to directionIndicator's position
     private void ThrowObject()
     {
-        currentMarble.GetComponent<MarbleFunctions>().objectRB.isKinematic = false;
+        ForceBar forceBarComp = forceBar.GetComponent<ForceBar>();
+        float forceModifier = forceBarComp.GetSliderValue();
         Vector3 direction = directionInidicator.transform.position - currentMarble.transform.position;
-        currentMarble.GetComponent<Rigidbody>().AddForce(direction.normalized * throwForce, ForceMode.Impulse);
+        Vector3 finalForce = direction.normalized * throwForce * forceModifier;
+        forceBarComp.Stop();
+
+        currentMarble.GetComponent<MarbleFunctions>().objectRB.isKinematic = false;
+        currentMarble.GetComponent<Rigidbody>().AddForce(finalForce, ForceMode.Impulse);
         currentMarble.GetComponent<MarbleFunctions>().rolling = true;
         Debug.Log("XD");
         StartCoroutine(CheckMarbleState());
     }
 
+    // Sets thrower phases to his original values
     private void ResetPhases()
     {
         movePhase = true;
         anglePhase = false;
         forcePhase = false;
+        forceBar.SetActive(false);
     }
 
+    // Sets position and rotation for the next marble that will be throw
     private void PrepareMarble()
     {
         currentMarble.GetComponent<MarbleFunctions>().waiting = false;
@@ -143,6 +155,7 @@ public class Thrower : MonoBehaviour
         currentMarble.transform.rotation = Quaternion.identity;
     }
 
+    // Sets the next marble that will be throw
     private void SetNextCurrentMarble()
     {
         if (CheckAvaibleMarbles())
@@ -167,6 +180,7 @@ public class Thrower : MonoBehaviour
 
     }
 
+    // Revises if there is at least one marble to throw
     private bool CheckAvaibleMarbles()
     {
         bool ans = false;
@@ -184,6 +198,7 @@ public class Thrower : MonoBehaviour
         return ans;
     }
 
+    // Courutine using to monitor the course of the thrown marble.
     IEnumerator CheckMarbleState()
     {
         while (currentMarble.GetComponent<MarbleFunctions>().rolling)
