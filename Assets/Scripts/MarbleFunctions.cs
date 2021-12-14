@@ -10,6 +10,8 @@ public class MarbleFunctions : MonoBehaviour
     public Rigidbody objectRB;
     public float rotationSpeed = 10;
     public bool inHole = false;
+    public TrailRenderer trailRenderer;
+    public ParticleSystem sparkExplosion;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,14 @@ public class MarbleFunctions : MonoBehaviour
     {
         OutOfBounds();
         WaitingBehavior();
+        if (rolling)
+        {
+            trailRenderer.enabled = true;
+        }
+        else
+        {
+            trailRenderer.enabled = false;
+        }
     }
 
     // Marble's behavior when is waiting
@@ -58,5 +68,9 @@ public class MarbleFunctions : MonoBehaviour
         transform.position = newPosition;
     }
 
+    public void PlaySparkExplosion()
+    {
+        sparkExplosion.Play();
+    }
 
 }

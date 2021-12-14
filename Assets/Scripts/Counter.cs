@@ -22,6 +22,7 @@ public class Counter : MonoBehaviour
         scoreManager.addScore(scoreValue);
         other.GetComponent<MarbleFunctions>().rolling = false;
         other.GetComponent<MarbleFunctions>().inHole = true;
+        other.GetComponent<MarbleFunctions>().PlaySparkExplosion();
 
     }
 
