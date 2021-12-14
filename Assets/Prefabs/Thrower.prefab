@@ -125,12 +125,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f2043f6332659e4d9938e164f431aaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  marbles: []
-  directionInidicator: {fileID: 0}
+  marbles:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  currentMarble: {fileID: 0}
+  directionInidicator: {fileID: 2916945852121062114}
   horizontalInput: 0
   verticalInput: 0
   speedMove: 10
-  throwForce: 0
+  throwPosition: {x: 0, y: -2.5, z: 0}
+  throwForce: 1700
   movePhase: 1
   anglePhase: 0
   forcePhase: 0
+  forceBar: {fileID: 0}
+  initialMarbleOrganizePosition: {x: -8, y: 19, z: 5}
+  gameOver: 0

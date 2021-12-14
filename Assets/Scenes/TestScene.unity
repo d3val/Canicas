@@ -1244,34 +1244,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 165260618}
     - target: {fileID: 3754389969559490963, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
-      propertyPath: speedMove
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754389969559490963, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
-      propertyPath: throwForce
-      value: 250
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754389969559490963, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
-      propertyPath: throwPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754389969559490963, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
-      propertyPath: throwPosition.y
-      value: -2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754389969559490963, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
-      propertyPath: throwPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754389969559490963, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
-      propertyPath: marbles.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754389969559490963, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
-      propertyPath: directionInidicator
-      value: 
-      objectReference: {fileID: 2119694304}
-    - target: {fileID: 3754389969559490963, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
       propertyPath: marbles.Array.data[0]
       value: 
       objectReference: {fileID: 1944222195}
@@ -1287,18 +1259,6 @@ PrefabInstance:
       propertyPath: marbles.Array.data[3]
       value: 
       objectReference: {fileID: 924507939}
-    - target: {fileID: 3754389969559490963, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
-      propertyPath: initialMarbleOrganizePosition.x
-      value: -8
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754389969559490963, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
-      propertyPath: initialMarbleOrganizePosition.y
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 3754389969559490963, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
-      propertyPath: initialMarbleOrganizePosition.z
-      value: 5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
 --- !u!1 &577334857
@@ -3932,11 +3892,6 @@ Transform:
   m_Father: {fileID: 1251695833}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2119694304 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2916945852121062114, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
-  m_PrefabInstance: {fileID: 554893764}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &180756900485702026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3944,6 +3899,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 180756898569321751, guid: f1bf5fa1302bb994dadc91ef50913669, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 7c1bb1b8d9d7c6c4b8f95c01b2b5ad29, type: 2}
     - target: {fileID: 180756899119704018, guid: f1bf5fa1302bb994dadc91ef50913669, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -3991,6 +3950,18 @@ PrefabInstance:
     - target: {fileID: 180756899119704029, guid: f1bf5fa1302bb994dadc91ef50913669, type: 3}
       propertyPath: m_Name
       value: Game Table
+      objectReference: {fileID: 0}
+    - target: {fileID: 180756899818009090, guid: f1bf5fa1302bb994dadc91ef50913669, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 9.1566
+      objectReference: {fileID: 0}
+    - target: {fileID: 180756899818009090, guid: f1bf5fa1302bb994dadc91ef50913669, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.8042
+      objectReference: {fileID: 0}
+    - target: {fileID: 180756899818009090, guid: f1bf5fa1302bb994dadc91ef50913669, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -55.5827
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1bf5fa1302bb994dadc91ef50913669, type: 3}
