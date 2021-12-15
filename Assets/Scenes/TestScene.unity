@@ -3378,6 +3378,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GameOverScreen: {fileID: 183134878}
   scoreText: {fileID: 953483647}
+  forceBar: {fileID: 165260618}
   scoreManager: {fileID: 1412961114}
 --- !u!1 &1877276226
 GameObject:

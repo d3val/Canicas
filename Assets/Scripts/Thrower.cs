@@ -30,6 +30,8 @@ public class Thrower : MonoBehaviour
     public bool gameOver = false;
     private GameManager gameManager;
 
+    private bool ready = true;
+
 
     private void Start()
     {
@@ -45,10 +47,22 @@ public class Thrower : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        CheckAvaibleMarbles();
         if (gameOver)
         {
-            Debug.Log("Game Over");
             gameManager.GameOver();
+        }
+
+        if (CountWaitingMarbles() == 1 && !ready)
+        {
+            ready = true;
+            SetNextCurrentMarble();
+        }
+
+        if (currentMarble.GetComponent<MarbleFunctions>().waiting)
+        {
+            currentMarble.GetComponent<MarbleFunctions>().waiting = false;
+            PrepareMarble();
         }
 
         ReadInput();
@@ -134,8 +148,16 @@ public class Thrower : MonoBehaviour
         currentMarble.GetComponent<MarbleFunctions>().objectRB.isKinematic = false;
         currentMarble.GetComponent<Rigidbody>().AddForce(finalForce, ForceMode.Impulse);
         currentMarble.GetComponent<MarbleFunctions>().rolling = true;
-        Debug.Log("XD");
-        StartCoroutine(CheckMarbleState());
+        currentMarble.GetComponent<MarbleFunctions>().waiting = false;
+
+        if (CountWaitingMarbles() < 1)
+        {
+            ready = false;
+        }
+        else
+        {
+            SetNextCurrentMarble();
+        }
     }
 
     // Sets thrower phases to his original values
@@ -166,15 +188,17 @@ public class Thrower : MonoBehaviour
                 currentMarbleIndex = 0;
             }
             currentMarble = marbles[currentMarbleIndex];
+            MarbleFunctions marbledata = currentMarble.GetComponent<MarbleFunctions>();
 
-            if (currentMarble.GetComponent<MarbleFunctions>().inHole)
-            {
-                SetNextCurrentMarble();
-            }
-            else
+
+            if (marbledata.waiting)
             {
                 PrepareMarble();
                 ResetPhases();
+            }
+            else
+            {
+                SetNextCurrentMarble();
             }
         }
 
@@ -198,14 +222,19 @@ public class Thrower : MonoBehaviour
         return ans;
     }
 
-    // Courutine using to monitor the course of the thrown marble.
-    IEnumerator CheckMarbleState()
+    // Return the number of marbles in waiting state
+    private int CountWaitingMarbles()
     {
-        while (currentMarble.GetComponent<MarbleFunctions>().rolling)
+        int n = 0;
+        foreach (GameObject marble in marbles)
         {
-            Debug.Log("Goro");
-            yield return null;
+            if (marble.GetComponent<MarbleFunctions>().waiting)
+            {
+                n++;
+            }
         }
-        SetNextCurrentMarble();
+        return n;
     }
+
+
 }

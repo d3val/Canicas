@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] GameObject GameOverScreen;
     [SerializeField] GameObject scoreText;
+    [SerializeField] GameObject forceBar;
     [SerializeField] ScoreManager scoreManager;
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     {
         string score = scoreManager.currentScore.ToString();
         scoreText.SetActive(false);
+        forceBar.SetActive(false);
         GameOverScreen.SetActive(true);
         GameOverScreen.transform.GetChild(0).GetComponent<Text>().text = "Final Score\n" + score;
         Time.timeScale = 0;
