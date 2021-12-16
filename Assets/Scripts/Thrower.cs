@@ -8,13 +8,18 @@ public class Thrower : MonoBehaviour
     public List<GameObject> marbles;
     private int currentMarbleIndex;
     [SerializeField] GameObject currentMarble;
-    public GameObject directionInidicator;
 
     public float horizontalInput;
     public float verticalInput;
 
     public float speedMove = 10;
+
+    public GameObject directionInidicator;
+    public Vector3 initialPosDirectionIndicator;
+    public float angleSpeedMove = 20;
+
     public Vector3 throwPosition;
+    public GameObject angleIndicator;
     public float throwForce;
 
     public bool movePhase = true;
@@ -73,6 +78,9 @@ public class Thrower : MonoBehaviour
         }
         else if (anglePhase)
         {
+            angleIndicator.transform.position = currentMarble.transform.position;
+
+            VisualAngleIndicator();
             SetAngle();
         }
         else if (forcePhase)
@@ -107,6 +115,8 @@ public class Thrower : MonoBehaviour
         {
             movePhase = false;
             anglePhase = true;
+            angleIndicator.SetActive(true);
+
         }
         else if (Input.GetKeyUp(KeyCode.Return) && anglePhase)
         {
@@ -118,6 +128,8 @@ public class Thrower : MonoBehaviour
         if (forcePhase && Input.GetKeyDown(KeyCode.Space))
         {
             ThrowObject();
+            angleIndicator.SetActive(false);
+
             forcePhase = false;
         }
     }
@@ -132,7 +144,7 @@ public class Thrower : MonoBehaviour
     // Move the direction indicator horizontally
     private void SetAngle()
     {
-        float step = horizontalInput * speedMove * Time.deltaTime;
+        float step = horizontalInput * angleSpeedMove * Time.deltaTime;
         directionInidicator.transform.Translate(Vector3.left * step);
     }
 
@@ -163,6 +175,7 @@ public class Thrower : MonoBehaviour
     // Sets thrower phases to his original values
     private void ResetPhases()
     {
+        directionInidicator.transform.position = initialPosDirectionIndicator;
         movePhase = true;
         anglePhase = false;
         forcePhase = false;
@@ -220,6 +233,12 @@ public class Thrower : MonoBehaviour
             gameOver = true;
         }
         return ans;
+    }
+
+    private void VisualAngleIndicator()
+    {
+        Vector3 lookDirection = angleIndicator.transform.position - directionInidicator.transform.position;
+        angleIndicator.transform.rotation = Quaternion.LookRotation(lookDirection, Vector3.up);
     }
 
     // Return the number of marbles in waiting state

@@ -5,6 +5,8 @@ using UnityEngine;
 public class MarbleFunctions : MonoBehaviour
 {
     private float limitBoundY = 8.5f;
+    private float limitBoundX = 14.5f;
+
     public bool rolling = false;
     public bool waiting = true;
     public Rigidbody objectRB;
@@ -54,6 +56,17 @@ public class MarbleFunctions : MonoBehaviour
             rolling = false;
             waiting = true;
         }
+
+        if (transform.position.x < -limitBoundX)
+        {
+            transform.position = new Vector3(-limitBoundX, transform.position.y, transform.position.z);
+        }
+
+        if (transform.position.x > limitBoundX)
+        {
+            transform.position = new Vector3(limitBoundX, transform.position.y, transform.position.z);
+        }
+
     }
 
     // Moves the gameObject to Vector3.zero

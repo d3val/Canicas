@@ -567,7 +567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa716e5ff63572648b829d798a6f732d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  increaseingSpeed: 1
+  increaseingSpeed: 2.7
 --- !u!1 &183134878
 GameObject:
   m_ObjectHideFlags: 0
@@ -1243,6 +1243,10 @@ PrefabInstance:
       propertyPath: forceBar
       value: 
       objectReference: {fileID: 165260618}
+    - target: {fileID: 3754389969559490963, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
+      propertyPath: gameOver
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3754389969559490963, guid: 247a3d8e4547d9641bb529d8017a5d7b, type: 3}
       propertyPath: marbles.Array.data[0]
       value: 
