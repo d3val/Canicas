@@ -40,12 +40,12 @@ public class Thrower : MonoBehaviour
 
     private void Start()
     {
+        ResetPhases();
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
         currentMarbleIndex = 0;
         currentMarble = marbles[currentMarbleIndex];
         currentMarble.GetComponent<MarbleFunctions>().SetPosition(throwPosition);
         currentMarble.GetComponent<MarbleFunctions>().waiting = false;
-        currentMarble.GetComponent<MarbleFunctions>().objectRB.isKinematic = true;
 
     }
 
@@ -55,7 +55,7 @@ public class Thrower : MonoBehaviour
         CheckAvaibleMarbles();
         if (gameOver)
         {
-            gameManager.GameOver();
+            StartCoroutine(WaitBeforeGameOver(1));
         }
 
         if (CountWaitingMarbles() == 1 && !ready)
@@ -255,5 +255,10 @@ public class Thrower : MonoBehaviour
         return n;
     }
 
-
+    // wait n seconds before game over
+    IEnumerator WaitBeforeGameOver(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+        gameManager.GameOver();
+    }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
 
     }
 
@@ -31,4 +33,15 @@ public class GameManager : MonoBehaviour
         GameOverScreen.transform.GetChild(0).GetComponent<Text>().text = "Final Score\n" + score;
         Time.timeScale = 0;
     }
+
+    public void RestartScene()
+    {
+        LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void LoadScene(int sceneIndex)
+    {
+        SceneManager.LoadScene(sceneIndex);
+    }
+
 }
