@@ -37,6 +37,8 @@ public class Thrower : MonoBehaviour
 
     private bool ready = true;
 
+    public GameObject moveLabels;
+    public GameObject throwLabels;
 
     private void Start()
     {
@@ -55,6 +57,7 @@ public class Thrower : MonoBehaviour
         CheckAvaibleMarbles();
         if (gameOver)
         {
+            throwLabels.SetActive(false);
             StartCoroutine(WaitBeforeGameOver(1));
         }
 
@@ -74,6 +77,8 @@ public class Thrower : MonoBehaviour
 
         if (movePhase)
         {
+            moveLabels.SetActive(true);
+            throwLabels.SetActive(false);
             MoveHorizontal();
         }
         else if (anglePhase)
@@ -85,7 +90,8 @@ public class Thrower : MonoBehaviour
         }
         else if (forcePhase)
         {
-            // Force bar code
+            moveLabels.SetActive(false);
+            throwLabels.SetActive(true);
         }
 
         OrganizeWaitingMarbles();
