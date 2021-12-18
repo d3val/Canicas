@@ -15,6 +15,8 @@ public class MarbleFunctions : MonoBehaviour
     public TrailRenderer trailRenderer;
     public ParticleSystem sparkExplosion;
 
+    public AudioSource holeEnterSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -84,6 +86,11 @@ public class MarbleFunctions : MonoBehaviour
     public void PlaySparkExplosion()
     {
         sparkExplosion.Play();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        holeEnterSound.Play();
     }
 
 }
