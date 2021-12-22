@@ -190,7 +190,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6394832368590209965}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -217,7 +217,10 @@ MonoBehaviour:
   inHole: 0
   trailRenderer: {fileID: 1944222196}
   sparkExplosion: {fileID: 4184831819976115694}
-  holeEnterSound: {fileID: -3843538278131597853}
+  hitSoundsSource: {fileID: -3843538278131597853}
+  inHoleSound: {fileID: 8300000, guid: 995f1b193a2ae1b4b927a1d1d0158acf, type: 3}
+  hitWood: {fileID: 8300000, guid: ef58892e7f4a124499b0389dd1240d79, type: 3}
+  hitMarble: {fileID: 8300000, guid: ffc1fa6492be2f54f8f1b459703c981c, type: 3}
 --- !u!96 &1944222196
 TrailRenderer:
   serializedVersion: 2

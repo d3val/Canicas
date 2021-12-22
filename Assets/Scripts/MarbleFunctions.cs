@@ -15,7 +15,11 @@ public class MarbleFunctions : MonoBehaviour
     public TrailRenderer trailRenderer;
     public ParticleSystem sparkExplosion;
 
-    public AudioSource holeEnterSound;
+    public AudioSource hitSoundsSource;
+    public AudioClip inHoleSound;
+    public AudioClip hitWood;
+    public AudioClip hitMarble;
+    private float maxVelocity = 50;
 
     // Start is called before the first frame update
     void Start()
@@ -83,14 +87,30 @@ public class MarbleFunctions : MonoBehaviour
         transform.position = newPosition;
     }
 
+    // Starts the sparkExplotion particles 
     public void PlaySparkExplosion()
     {
         sparkExplosion.Play();
     }
 
+    // When the object enter with a trigger collider will reproduce a sound
     private void OnTriggerEnter(Collider other)
     {
-        holeEnterSound.Play();
+        hitSoundsSource.PlayOneShot(inHoleSound);
+    }
+
+    // when the object collides will reproduce a sound depending on the object collision
+    private void OnCollisionEnter(Collision collision)
+    {
+        float volume = objectRB.velocity.magnitude / maxVelocity;
+        if (collision.gameObject.CompareTag("Marble"))
+        {
+            hitSoundsSource.PlayOneShot(hitMarble);
+        }
+        else if(!inHole)
+        {
+            hitSoundsSource.PlayOneShot(hitWood, volume);
+        }
     }
 
 }
